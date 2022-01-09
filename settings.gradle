@@ -11,3 +11,4 @@ dependencyResolutionManagement {
 rootProject.name = "github-app"
 include ':app'
 include ':mvp'
+include ':common'
