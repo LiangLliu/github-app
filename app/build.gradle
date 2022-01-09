@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -13,7 +15,15 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
+
+        vectorDrawables.useSupportLibrary = true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
@@ -33,13 +43,60 @@ android {
 
 dependencies {
 
+    var anko_version = '0.10.8'
+    var kotlinx_coroutines_version = '1.6.0'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation 'androidx.core:core-ktx:1.7.0'
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.6.10'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.10'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version"
+
+    api "org.jetbrains.anko:anko-commons:$anko_version"
+    api "org.jetbrains.anko:anko-sdk15:$anko_version"
+    api "org.jetbrains.anko:anko-sdk15-listeners:$anko_version"
+    api "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
+    api "org.jetbrains.anko:anko-appcompat-v7-listeners:$anko_version"
+    api "org.jetbrains.anko:anko-sdk15-coroutines:$anko_version"
+
     implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'androidx.multidex:multidex:2.0.1'
+
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    api 'cn.carbs.android:AvatarImageView:1.0.4'
+    implementation 'com.github.jdsjlzx:LRecyclerView:1.5.4.3'
+
+
+    implementation 'com.github.enbandari:richtext:0.1'
+
+    /* squareup  */
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.9.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
+
+    api 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+    api 'com.squareup.okhttp3:okhttp:4.9.3'
+
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.3'
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
     implementation project(":mvp")
+    implementation project(":common")
+    implementation project(":layout")
+    implementation project(":retroapollo-android")
 }

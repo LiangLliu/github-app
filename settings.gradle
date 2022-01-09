@@ -6,9 +6,14 @@ dependencyResolutionManagement {
         maven {
             url 'https://maven.aliyun.com/repository/public/'
         }
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 rootProject.name = "github-app"
 include ':app'
 include ':mvp'
 include ':common'
+include ':layout'
+include ':retroapollo-android'

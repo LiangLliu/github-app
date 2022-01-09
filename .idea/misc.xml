@@ -3,7 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_about_us.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/ic_day.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/ic_fork.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/ic_github.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/ic_go.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/ic_issue_closed.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/ic_speech_bubble.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/ic_star_o.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/sel_star.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/side_nav_bar_night.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.3489583333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/activity_repo_details.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/app_bar_details.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/app_bar_simple.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/detail_item.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/fragment_about.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/item_card.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/item_issue.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/item_repo.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/item_user.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/list.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/menu_item_daynight.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.3489583333333333" />
+        <entry key="app/src/main/res/menu/activity_actionbar.xml" value="0.3489583333333333" />
       </map>
     </option>
   </component>
