@@ -5,12 +5,13 @@ import android.os.Bundle
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
+import com.edwin.github_app.R
 
 import com.edwin.github_app.view.fragments.AboutFragment
 import com.edwin.github_app.view.fragments.MyIssueFragment
 import com.edwin.github_app.view.fragments.PeopleFragment
 import com.edwin.github_app.view.fragments.RepoFragment
-import com.edwin.github_app.view.fragments.subfragments.RepoListFragmentBuilder
+//import com.edwin.github_app.view.fragments.subfragments.RepoListFragmentBuilder
 
 class NavViewItem private constructor(
     val groupId: Int = 0,
@@ -22,24 +23,36 @@ class NavViewItem private constructor(
 
     companion object {
         private val items = mapOf(
-            id.navRepos to NavViewItem(
+            R.id.navRepos to NavViewItem(
                 0,
                 "Repository",
-                drawable.ic_repository,
+                R.drawable.ic_repository,
                 RepoFragment::class.java,
-                Bundle().apply { putParcelable(RepoListFragmentBuilder.OPTIONAL_USER, null) }),
-            id.navPeople to NavViewItem(
+                Bundle().apply { 
+//                    putParcelable(RepoListFragmentBuilder.OPTIONAL_USER, null)
+                }),
+            R.id.navPeople to NavViewItem(
                 0,
                 "People",
-                drawable.ic_people,
+                R.drawable.ic_people,
                 PeopleFragment::class.java
             ),
-            id.navIssue to NavViewItem(0, "Issue", drawable.ic_issue, MyIssueFragment::class.java),
-            id.navAbout to NavViewItem(0, "About", drawable.ic_about_us, AboutFragment::class.java)
+            R.id.navIssue to NavViewItem(
+                0,
+                "Issue",
+                R.drawable.ic_issue,
+                MyIssueFragment::class.java
+            ),
+            R.id.navAbout to NavViewItem(
+                0,
+                "About",
+                R.drawable.ic_about_us,
+                AboutFragment::class.java
+            )
         )
 
         operator fun get(@IdRes navId: Int): NavViewItem {
-            return items[navId] ?: items[id.navRepos]!!
+            return items[navId] ?: items[R.id.navRepos]!!
         }
 
         operator fun get(item: NavViewItem): Int {

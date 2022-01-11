@@ -3,9 +3,9 @@ package com.edwin.github_app.view.widget
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.graphics.Color
-import android.support.annotation.StringRes
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.StringRes
 import org.jetbrains.anko.*
 
 /**

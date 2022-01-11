@@ -1,17 +1,25 @@
 package com.edwin.github_app.view
 
 import android.os.Bundle
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import cn.carbs.android.avatarimageview.library.AppCompatAvatarImageView
+import com.edwin.annotations.ActivityBuilder
+import com.edwin.annotations.Required
+import com.edwin.experimental.coroutines.awaitOrError
 import com.edwin.experimental.coroutines.launchUI
 import com.edwin.github_app.network.services.ActivityService
 import com.edwin.github_app.network.services.RepositoryService
 
 import com.edwin.github_app.R
+import com.edwin.github_app.network.GraphQLService
 import com.edwin.github_app.network.entities.Repository
-import com.edwin.github_app.utils.githubTimeToDate
-import com.edwin.github_app.utils.view
+import com.edwin.github_app.utils.*
 import com.edwin.github_app.view.common.BaseDetailSwipeFinishableActivity
-import kotlinx.android.synthetic.main.activity_repo_details.*
-import kotlinx.android.synthetic.main.app_bar_details.*
+import com.edwin.github_app.view.widget.DetailItemView
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import retrofit2.Response
 import rx.Subscriber
 
@@ -20,10 +28,32 @@ class RepoDetailActivity : BaseDetailSwipeFinishableActivity() {
 
     @Required
     lateinit var repository: Repository
+    private lateinit var toolBar: Toolbar
+    private lateinit var avatarView: AppCompatAvatarImageView
+    private lateinit var collapsingToolbar: CollapsingToolbarLayout
+    private lateinit var descriptionView: TextView
+    private lateinit var bodyView: TextView
+    private lateinit var detailContainer: LinearLayout
+    private lateinit var stars: DetailItemView
+    private lateinit var watches: DetailItemView
+
+    private lateinit var loadingView: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repo_details)
+
+        toolBar = findViewById(R.id.toolBar)
+        avatarView = findViewById(R.id.avatarView)
+        collapsingToolbar = findViewById(R.id.collapsingToolbar)
+        descriptionView = findViewById(R.id.descriptionView)
+        bodyView = findViewById(R.id.bodyView)
+        detailContainer = findViewById(R.id.detailContainer)
+        stars = findViewById(R.id.stars)
+        watches = findViewById(R.id.watches)
+
+        toolBar = findViewById(R.id.toolBar)
+
         setSupportActionBar(toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -125,10 +155,11 @@ class RepoDetailActivity : BaseDetailSwipeFinishableActivity() {
                 override fun onNext(t: Repository) {
                     repository = t
 
-                    owner.content = repository.owner.login
+                    findViewById<DetailItemView>(R.id.owner).content = repository.owner.login
                     stars.content = repository.stargazers_count.toString()
                     watches.content = repository.subscribers_count.toString()
-                    forks.content = repository.forks_count.toString()
+                    findViewById<DetailItemView>(R.id.forks).content =
+                        repository.forks_count.toString()
                     //issues.content = repository.open_issues_count.toString()
 
                     loadingView.animate().alpha(0f).start()
@@ -161,17 +192,17 @@ class RepoDetailActivity : BaseDetailSwipeFinishableActivity() {
 //                    issues.content = "open: ${data.repository()?.openIssues()?.totalCount()?: 0} closed: ${data.repository()?.closedIssues()?.totalCount()?: 0}"
 //                }
 
-        launchUI {
-            val (data, error) = GraphQLService.repositoryIssueCount3(
-                repository.owner.login,
-                repository.name
-            ).awaitOrError()
-            error?.printStackTrace() ?: kotlin.run {
-                issues.content = "open: ${
-                    data.repository()?.openIssues()?.totalCount() ?: 0
-                } closed: ${data.repository()?.closedIssues()?.totalCount() ?: 0}"
-            }
-        }
+//        launchUI {
+//            val (data, error) = GraphQLService.repositoryIssueCount3(
+//                repository.owner.login,
+//                repository.name
+//            ).awaitOrError()
+//            error?.printStackTrace() ?: kotlin.run {
+//                findViewById<DetailItemView>(R.id.issues).content = "open: ${
+//                    data.repository()?.openIssues()?.totalCount() ?: 0
+//                } closed: ${data.repository()?.closedIssues()?.totalCount() ?: 0}"
+//            }
+//        }
 
 //        GraphQLService.repositoryIssueCount2(repository.owner.login, repository.name)
 //                        .enqueue(object : ApolloCall.Callback<RepositoryIssueCountQuery.Data>(){

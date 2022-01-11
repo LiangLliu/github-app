@@ -17,7 +17,8 @@ class RepoFragment : CommonViewPagerFragment() {
             FragmentPage(RepoListFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(
-                        RepoListFragmentBuilder.OPTIONAL_USER,
+                        null,
+//                        RepoListFragmentBuilder.OPTIONAL_USER,
                         AccountManager.currentUser
                     )
                 }

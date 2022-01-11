@@ -10,8 +10,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.edwin.common.ext.otherwise
 import com.edwin.common.ext.yes
 import com.edwin.common.log.logger
-import com.google.android.material.navigation.NavigationView
 import com.edwin.github_app.view.config.NavViewItem
+import com.google.android.material.navigation.NavigationView
 
 /**
  * Created by benny on 7/6/17.
@@ -36,7 +36,7 @@ inline fun NavigationView.doOnLayoutAvailable(crossinline block: () -> Unit) {
 @SuppressLint("RestrictedApi")
 fun NavigationView.selectItem(@IdRes resId: Int){
     doOnLayoutAvailable {
-        logger.debug("select Item: ${NaViewItem[resId].title}")
+        logger.debug("select Item: ${NavViewItem[resId].title}")
         setCheckedItem(resId)
         (menu.findItem(resId) as MenuItemImpl)()
     }

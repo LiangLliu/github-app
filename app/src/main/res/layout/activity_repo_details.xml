@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/app_bar_details"/>
+    <include layout="@layout/app_bar_details" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll_view"
@@ -27,66 +25,68 @@
                 android:paddingTop="24dp">
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
                     <com.edwin.github_app.view.widget.DetailItemView
                         android:id="@+id/stars"
-                        app:item_icon="@drawable/ic_people"
-                        app:item_title="Star"
-                        app:item_content=""
-                        app:item_op_icon="@drawable/sel_star"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:item_content=""
+                        app:item_icon="@drawable/ic_people"
+                        app:item_op_icon="@drawable/sel_star"
+                        app:item_title="Star" />
+
                     <com.edwin.github_app.view.widget.DetailItemView
                         android:id="@+id/watches"
-                        app:item_icon="@drawable/ic_people"
-                        app:item_title="Watch"
-                        app:item_content=""
-                        android:layout_weight="1"
-                        app:item_op_icon="@drawable/sel_watch"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:item_content=""
+                        app:item_icon="@drawable/ic_people"
+                        app:item_op_icon="@drawable/sel_watch"
+                        app:item_title="Watch" />
 
                 </LinearLayout>
 
                 <com.edwin.github_app.view.widget.DetailItemView
                     android:id="@+id/owner"
-                    app:item_icon="@drawable/ic_people"
-                    app:item_title="Owner"
-                    app:item_content="enbandari"
-                    app:item_op_icon="@drawable/ic_go"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    app:item_content="enbandari"
+                    app:item_icon="@drawable/ic_people"
+                    app:item_op_icon="@drawable/ic_go"
+                    app:item_title="Owner" />
 
                 <com.edwin.github_app.view.widget.DetailItemView
                     android:id="@+id/issues"
-                    app:item_icon="@drawable/ic_issue"
-                    app:item_title="Issue"
-                    app:item_content=""
-                    app:item_op_icon="@drawable/ic_go"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    app:item_content=""
+                    app:item_icon="@drawable/ic_issue"
+                    app:item_op_icon="@drawable/ic_go"
+                    app:item_title="Issue" />
 
                 <com.edwin.github_app.view.widget.DetailItemView
                     android:id="@+id/forks"
-                    app:item_icon="@drawable/ic_people"
-                    app:item_title="Fork"
-                    app:item_content=""
-                    app:item_op_icon="@drawable/ic_go"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    app:item_content=""
+                    app:item_icon="@drawable/ic_people"
+                    app:item_op_icon="@drawable/ic_go"
+                    app:item_title="Fork" />
 
                 <com.edwin.github_app.view.widget.DetailItemView
                     android:id="@+id/code"
-                    app:item_icon="@drawable/ic_issue"
-                    app:item_title="Code"
-                    app:item_content=""
-                    app:item_op_icon="@drawable/ic_go"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    app:item_content=""
+                    app:item_icon="@drawable/ic_issue"
+                    app:item_op_icon="@drawable/ic_go"
+                    app:item_title="Code" />
             </LinearLayout>
 
             <FrameLayout
@@ -97,9 +97,9 @@
                 <ProgressBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:indeterminateTintMode="src_atop"
+                    android:layout_gravity="center"
                     android:indeterminateTint="@color/colorAccent"
-                    android:layout_gravity="center" />
+                    android:indeterminateTintMode="src_atop" />
             </FrameLayout>
         </FrameLayout>
 

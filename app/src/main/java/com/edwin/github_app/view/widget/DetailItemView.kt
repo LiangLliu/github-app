@@ -3,17 +3,27 @@ package com.edwin.github_app.view.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatToggleButton
 
 import com.edwin.github_app.R
-import kotlinx.android.synthetic.main.detail_item.view.*
+import com.edwin.github_app.utils.delegateOf
+
+import com.edwin.github_app.utils.subscribeIgnoreError
 import org.jetbrains.anko.sdk15.listeners.onClick
 import rx.Observable
 import kotlin.reflect.KProperty
 
 typealias CheckEvent = (Boolean) -> Observable<Boolean>
 
-class ObjectPropertyDelegate<T, R>(val receiver: R, val getter: ((R) -> T)? = null, val setter: ((R, T) -> Unit)? = null, defaultValue: T? = null) {
+class ObjectPropertyDelegate<T, R>(
+    val receiver: R,
+    val getter: ((R) -> T)? = null,
+    val setter: ((R, T) -> Unit)? = null,
+    defaultValue: T? = null
+) {
     private var value: T? = defaultValue
 
     operator fun getValue(ref: Any, property: KProperty<*>): T {
@@ -24,27 +34,39 @@ class ObjectPropertyDelegate<T, R>(val receiver: R, val getter: ((R) -> T)? = nu
         setter?.invoke(receiver, value)
         this.value = value
     }
-
 }
 
 class DetailItemView
 @JvmOverloads
-constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
-    : RelativeLayout(context, attrs, defStyleAttr) {
+constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+    RelativeLayout(context, attrs, defStyleAttr) {
 
     init {
         View.inflate(context, R.layout.detail_item, this)
     }
 
-    var title by delegateOf(titleView::getText, titleView::setText)
+    var title by delegateOf(
+        findViewById<TextView>(R.id.titleView)::getText,
+        findViewById<TextView>(R.id.titleView)::setText
+    )
 
-    var content by delegateOf(contentView::getText, contentView::setText, "")
+    var content by delegateOf(
+        findViewById<TextView>(R.id.contentView)::getText,
+        findViewById<TextView>(R.id.contentView)::setText,
+        ""
+    )
 
-    var icon by delegateOf(iconView::setImageResource, 0)
+    var icon by delegateOf(findViewById<ImageView>(R.id.iconView)::setImageResource, 0)
 
-    var operatorIcon by delegateOf(operatorIconView::setBackgroundResource, 0)
+    var operatorIcon by delegateOf(
+        findViewById<AppCompatToggleButton>(R.id.operatorIconView)::setBackgroundResource,
+        0
+    )
 
-    var isChecked by delegateOf(operatorIconView::isChecked, operatorIconView::setChecked)
+    var isChecked by delegateOf(
+        findViewById<AppCompatToggleButton>(R.id.operatorIconView)::isChecked,
+        findViewById<AppCompatToggleButton>(R.id.operatorIconView)::setChecked
+    )
 
     var checkEvent: CheckEvent? = null
 
@@ -60,9 +82,9 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
         onClick {
             checkEvent?.invoke(isChecked)
-                    ?.subscribeIgnoreError {
-                        isChecked = it
-                    }
+                ?.subscribeIgnoreError {
+                    isChecked = it
+                }
         }
     }
 }

@@ -7,9 +7,12 @@ import android.view.GestureDetector
 import android.view.MenuItem
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
+import com.edwin.annotations.ActivityBuilder
+import com.edwin.annotations.PendingTransition
 
 import com.edwin.github_app.R
 import com.edwin.github_app.view.config.Themer
+import com.edwin.swipefinishable.SwipeFinishable
 import org.jetbrains.anko.dip
 
 @ActivityBuilder(
@@ -79,7 +82,8 @@ class SwipeBackTouchDelegate(val activity: Activity, block: () -> Unit) {
 }
 
 @ActivityBuilder(pendingTransition = PendingTransition(enterAnim = 0, exitAnim = 0))
-abstract class BaseDetailSwipeFinishableActivity : AppCompatActivity(), SwipeFinishableActivity {
+abstract class BaseDetailSwipeFinishableActivity : AppCompatActivity(),
+    SwipeFinishable.SwipeFinishableActivity {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Themer.applyProperTheme(this, true)

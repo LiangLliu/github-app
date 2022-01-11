@@ -4,14 +4,14 @@ import android.database.DataSetObserver
 
 import android.view.View
 import androidx.viewpager.widget.ViewPager
+import com.edwin.github_app.R
 import com.edwin.github_app.view.MainActivity
 import com.google.android.material.tabs.TabLayout
 
 class ActionBarController(val mainActivity: MainActivity) {
 
-    //region tablayout
-    private val tabLayout by lazy {
-        mainActivity.tabLayout
+    private val tabLayout: TabLayout by lazy {
+        mainActivity.findViewById(R.id.tabLayout)
     }
 
     class ViewPagerDataSetObserver(val tabLayout: TabLayout) : DataSetObserver() {
@@ -30,7 +30,8 @@ class ActionBarController(val mainActivity: MainActivity) {
                     tabLayout.visibility = View.GONE
                 } else {
                     tabLayout.visibility = View.VISIBLE
-                    tabLayout.tabMode = if (viewPager.adapter?.count ?: 0 > 3) TabLayout.MODE_SCROLLABLE else TabLayout.MODE_FIXED
+                    tabLayout.tabMode =
+                        if (viewPager.adapter?.count ?: 0 > 3) TabLayout.MODE_SCROLLABLE else TabLayout.MODE_FIXED
                 }
             }
         }
@@ -41,7 +42,7 @@ class ActionBarController(val mainActivity: MainActivity) {
     }
 
     fun setupWithViewPager(viewPager: ViewPager?) {
-        viewPager?.let(dataSetObserver::viewPager::set)?: run{ tabLayout.visibility = View.GONE }
+        viewPager?.let(dataSetObserver::viewPager::set) ?: run { tabLayout.visibility = View.GONE }
         tabLayout.setupWithViewPager(viewPager)
     }
 }

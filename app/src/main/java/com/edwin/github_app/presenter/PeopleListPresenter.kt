@@ -7,9 +7,6 @@ import com.edwin.github_app.network.entities.User
 import com.edwin.github_app.view.common.CommonListPresenter
 import com.edwin.github_app.view.fragments.subfragments.PeopleListFragment
 
-/**
- * Created by benny on 7/9/17.
- */
 class PeopleListPresenter : CommonListPresenter<User, PeopleListFragment>(){
 
     override val listPage: ListPage<User> by lazy {

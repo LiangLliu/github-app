@@ -3,7 +3,11 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'kotlin-noarg'
 }
+
+apply from: './local.gradle'
+
 
 android {
     compileSdk 31
@@ -27,9 +31,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "testUserName", '"' + project.username + '"'
+            buildConfigField "String", "testPassword", '"' + project.password + '"'
+        }
+
         release {
+            buildConfigField "String", "testUserName", '""'
+            buildConfigField "String", "testPassword", '""'
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -49,6 +60,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.core:core-ktx:1.7.0'
+
+    api "androidx.fragment:fragment-ktx:1.4.0"
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.6.10'
     implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.10'
@@ -70,13 +83,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
     api 'cn.carbs.android:AvatarImageView:1.0.4'
     implementation 'com.github.jdsjlzx:LRecyclerView:1.5.4.3'
-
 
     implementation 'com.github.enbandari:richtext:0.1'
 
@@ -93,10 +101,13 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxjava:3.1.3'
 
     implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    kapt 'com.github.bumptech.glide:compiler:4.12.0'
 
     implementation project(":mvp")
     implementation project(":common")
     implementation project(":layout")
     implementation project(":retroapollo-android")
+    implementation project(':annotations')
+    implementation project(':runtime')
+    kapt project(':compiler')
 }

@@ -6,7 +6,7 @@ import com.edwin.github_app.AppContext
 
 object Configs {
 
-    object Account{
+    object Account {
         val SCOPES = listOf("user", "repo", "notifications", "gist", "admin:org")
         const val clientId = "cccb7d70ba4fe6d4f62d"
         const val clientSecret = "30bea5fc021ed503bef21e23ce8e2b02d588ab6c"
@@ -14,7 +14,7 @@ object Configs {
         const val noteUrl = "http://www.kotliner.cn"
 
         val fingerPrint by lazy {
-            (AppContext.deviceId + clientId).also { logger.info("fingerPrint: "+it) }
+            (AppContext.deviceId + clientId).also { logger.info("fingerPrint: " + it) }
         }
     }
 

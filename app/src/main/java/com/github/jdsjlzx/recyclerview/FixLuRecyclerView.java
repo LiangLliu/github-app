@@ -19,11 +19,8 @@ import com.github.jdsjlzx.view.LoadingFooter;
 import com.google.android.material.appbar.AppBarLayout;
 
 /**
- * Fixbug
+ * FixBug
  * https://github.com/jdsjlzx/LRecyclerView/commit/1cf588ebcd768694a375423de015efe455144bc4
- *
- * @author Lzx
- * @created 2016/9/9 16:45
  */
 public class FixLuRecyclerView extends RecyclerView {
     private boolean mLoadMoreEnabled = true;
@@ -87,7 +84,6 @@ public class FixLuRecyclerView extends RecyclerView {
      */
     private int mScrolledXDistance = 0;
     //scroll variables end
-
 
     private AppBarStateChangeListener.State appbarState = AppBarStateChangeListener.State.EXPANDED;
 
@@ -203,7 +199,6 @@ public class FixLuRecyclerView extends RecyclerView {
         }
         return max;
     }
-
 
     /**
      * set view when no content item
@@ -325,7 +320,6 @@ public class FixLuRecyclerView extends RecyclerView {
             loadingFooter.setViewBackgroundColor(backgroundColor);
         }
     }
-
 
     public void setLScrollListener(LScrollListener listener) {
         mLScrollListener = listener;

@@ -9,6 +9,9 @@ dependencyResolutionManagement {
         maven {
             url "https://jitpack.io"
         }
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
     }
 }
 rootProject.name = "github-app"
@@ -17,3 +20,7 @@ include ':mvp'
 include ':common'
 include ':layout'
 include ':retroapollo-android'
+include ':compiler'
+include ':annotations'
+include ':apt-utils'
+include ':runtime'

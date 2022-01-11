@@ -1,7 +1,6 @@
 package retrofit2.adapter.rxjava
 
 import com.edwin.common.log.logger
-import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
 class GitHubPaging<T> : ArrayList<T>() {

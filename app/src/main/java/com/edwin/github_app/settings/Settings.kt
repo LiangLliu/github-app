@@ -1,6 +1,5 @@
 package com.edwin.github_app.settings
 
-import android.accounts.AccountManager
 import com.edwin.github_app.AppContext
 import com.edwin.github_app.R
 import com.edwin.github_app.model.account.AccountManager.isLoggedIn

@@ -25,7 +25,7 @@ final class RxJavaCallAdapter2<R> implements CallAdapter<R, Object> {
     private final boolean isSingle;
     private final boolean isCompletable;
 
-    RxJavaCallAdapter2(Type responseType, @Nullable Scheduler schedulerSubscribeOn, @Nullable Scheduler schedulerObserveOn, boolean isAsync,
+    public RxJavaCallAdapter2(Type responseType, @Nullable Scheduler schedulerSubscribeOn, @Nullable Scheduler schedulerObserveOn, boolean isAsync,
                        boolean isResult, boolean isBody, boolean isPaging, boolean isSingle, boolean isCompletable) {
         this.responseType = responseType;
         this.schedulerSubscribeOn = schedulerSubscribeOn;

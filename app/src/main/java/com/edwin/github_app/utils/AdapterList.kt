@@ -2,7 +2,6 @@ package com.edwin.github_app.utils
 
 import androidx.recyclerview.widget.RecyclerView
 
-
 /**
  * Created by benny on 7/9/17.
  */

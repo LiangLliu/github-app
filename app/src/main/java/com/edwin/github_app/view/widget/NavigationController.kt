@@ -1,19 +1,21 @@
 package com.edwin.github_app.view.widget
 
 import android.view.MenuItem
-
-import com.edwin.github_app.view.config.NavViewItem
+import android.view.View
+import android.widget.TextView
+import cn.carbs.android.avatarimageview.library.AppCompatAvatarImageView
 import com.edwin.common.log.logger
 import com.edwin.github_app.R
 import com.edwin.github_app.model.account.AccountManager
 import com.edwin.github_app.network.entities.User
 import com.edwin.github_app.settings.Settings
 import com.edwin.github_app.utils.doOnLayoutAvailable
+import com.edwin.github_app.utils.loadWithGlide
 import com.edwin.github_app.utils.selectItem
+import com.edwin.github_app.view.config.NavViewItem
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.nav_header_main.view.*
 import org.jetbrains.anko.imageResource
-import org.jetbrains.anko.sdk15.listeners.onClick
+import org.jetbrains.anko.sdk15.coroutines.onClick
 
 class NavigationController(
     private val navigationView: NavigationView,
@@ -53,15 +55,19 @@ class NavigationController(
     private fun onUpdate(user: User?) {
         navigationView.doOnLayoutAvailable {
             navigationView.apply {
-                usernameView.text = user?.login ?: "请登录"
-                emailView.text = user?.email ?: "bennyhuo@kotliner.cn"
+                findViewById<TextView>(R.id.usernameView).text = user?.login ?: "请登录"
+                findViewById<TextView>(R.id.emailView).text = user?.email ?: "bennyhuo@kotliner.cn"
                 if (user == null) {
-                    avatarView.imageResource = R.drawable.ic_github
+                    findViewById<AppCompatAvatarImageView>(R.id.avatarView).imageResource =
+                        R.drawable.ic_github
                 } else {
-                    avatarView.loadWithGlide(user.avatar_url, user.login.first())
+                    findViewById<AppCompatAvatarImageView>(R.id.avatarView).loadWithGlide(
+                        user.avatar_url,
+                        user.login.first()
+                    )
                 }
 
-                navigationHeader.onClick { onHeaderClick() }
+                findViewById<View>(R.id.navigationHeader).onClick { onHeaderClick() }
             }
         }
     }
@@ -71,8 +77,9 @@ class NavigationController(
         navigationView.doOnLayoutAvailable {
             logger.debug("selectProperItem onLayout: $currentItem")
             ((currentItem?.let { NavViewItem[it] } ?: Settings.lastPage)
-                    .takeIf { navigationView.menu.findItem(it) != null } ?: run { Settings.defaultPage })
-                    .let(navigationView::selectItem)
+                .takeIf { navigationView.menu.findItem(it) != null }
+                ?: run { Settings.defaultPage })
+                .let(navigationView::selectItem)
         }
     }
 }
