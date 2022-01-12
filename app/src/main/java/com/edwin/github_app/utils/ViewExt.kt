@@ -23,7 +23,7 @@ var TextView.htmlText: String
     }
     get() = text.toString()
 
-inline fun ViewManager.avatarImageView(): AppCompatAvatarImageView = avatarImageView() {}
+fun ViewManager.avatarImageView(): AppCompatAvatarImageView = avatarImageView() {}
 inline fun ViewManager.avatarImageView(init: (@AnkoViewDslMarker AppCompatAvatarImageView).() -> Unit): AppCompatAvatarImageView {
     return ankoView({ ctx: Context -> AppCompatAvatarImageView(ctx) }, theme = 0) { init() }
 }

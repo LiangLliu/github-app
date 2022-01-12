@@ -3,17 +3,18 @@ package com.edwin.github_app.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatToggleButton
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.edwin.annotations.ActivityBuilder
 import com.edwin.common.ext.no
 import com.edwin.common.ext.otherwise
 import com.edwin.common.ext.yes
 import com.edwin.experimental.coroutines.launchUI
+import com.edwin.github_app.BaseApp
 import com.edwin.github_app.R
 import com.edwin.github_app.model.account.AccountManager
 import com.edwin.github_app.model.account.OnAccountStateChangeListener
@@ -29,8 +30,6 @@ import com.google.android.material.navigation.NavigationView
 import org.jetbrains.anko.sdk15.listeners.onCheckedChange
 import org.jetbrains.anko.toast
 
-
-@ActivityBuilder(flags = [Intent.FLAG_ACTIVITY_CLEAR_TOP])
 class MainActivity : AppCompatActivity(), OnAccountStateChangeListener {
 
     private lateinit var toolbar: Toolbar
@@ -105,7 +104,8 @@ class MainActivity : AppCompatActivity(), OnAccountStateChangeListener {
     private fun handleNavigationHeaderClickEvent() {
         AccountManager.isLoggedIn()
             .no {
-//                startLoginActivity()
+                val intent = Intent(BaseApp.context, LoginActivity::class.java)
+                startActivity(intent)
             }.otherwise {
                 launchUI {
                     if (confirm("提示", "确认注销吗?")) {
@@ -134,27 +134,23 @@ class MainActivity : AppCompatActivity(), OnAccountStateChangeListener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.activity_actionbar, menu)
-//        menu.findItem(R.id.dayNight)
-//            .actionView.dayNightSwitch.apply {
-//                isChecked = Themer.currentTheme() == Themer.ThemeMode.DAY
-//
-//                onCheckedChange { buttonView, isChecked ->
-//                    Themer.toggle(this@MainActivity)
-//                }
-//            }
-
-
-        val dayNight = menu.findItem(R.id.dayNight)
-
-        findViewById<AppCompatToggleButton>(R.id.dayNightSwitch)
+        menu.findItem(R.id.dayNight)
+            .actionView
+            .findViewById<AppCompatToggleButton>(R.id.dayNightSwitch)
             .apply {
                 isChecked = Themer.currentTheme() == Themer.ThemeMode.DAY
-
                 onCheckedChange { _, _ ->
                     Themer.toggle(this@MainActivity)
                 }
             }
+        return super.onCreateOptionsMenu(menu)
+    }
 
-        return true
+    //给系统自带的home按钮(小箭头)添加点击事件：销毁本页面返回上一级
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

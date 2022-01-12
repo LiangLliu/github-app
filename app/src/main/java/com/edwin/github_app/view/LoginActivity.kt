@@ -10,9 +10,9 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import androidx.appcompat.widget.Toolbar
-import com.edwin.annotations.ActivityBuilder
 import com.edwin.common.ext.otherwise
 import com.edwin.common.ext.yes
+import com.edwin.github_app.BaseApp
 import com.edwin.github_app.R
 import com.edwin.github_app.presenter.LoginPresenter
 import com.edwin.github_app.utils.hideSoftInput
@@ -21,7 +21,6 @@ import com.edwin.mvp.impl.BaseActivity
 import org.jetbrains.anko.sdk15.listeners.onClick
 import org.jetbrains.anko.toast
 
-@ActivityBuilder(flags = [Intent.FLAG_ACTIVITY_NO_HISTORY])
 class LoginActivity : BaseActivity<LoginPresenter>() {
 
     private lateinit var username: EditText
@@ -99,7 +98,8 @@ class LoginActivity : BaseActivity<LoginPresenter>() {
     fun onLoginSuccess() {
         toast("登录成功")
         showProgress(false)
-//        startMainActivity()
+        val intent = Intent(BaseApp.context, MainActivity::class.java)
+        startActivity(intent)
     }
 
     fun onDataInit(name: String, passwd: String) {

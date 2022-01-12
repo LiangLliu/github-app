@@ -33,14 +33,17 @@ fun Job.cancelByActive() {
     if (isActive) cancel()
 }
 
+@DelicateCoroutinesApi
 fun launchUI(block: suspend () -> Unit): Job {
     return GlobalScope.launch(Dispatchers.Main) { block() }
 }
 
+@DelicateCoroutinesApi
 fun launchIO(block: suspend () -> Unit): Job {
     return GlobalScope.launch(Dispatchers.IO) { block() }
 }
 
+@DelicateCoroutinesApi
 fun launch(block: suspend () -> Unit): Job {
     return GlobalScope.launch { block() }
 }

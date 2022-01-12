@@ -32,10 +32,10 @@ object AccountManager {
             return field
         }
         set(value) {
-            if (value == null) {
-                userJson = ""
+            userJson = if (value == null) {
+                ""
             } else {
-                userJson = Gson().toJson(value)
+                Gson().toJson(value)
             }
             field = value
         }

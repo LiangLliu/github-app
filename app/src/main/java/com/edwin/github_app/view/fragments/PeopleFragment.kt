@@ -2,11 +2,9 @@ package com.edwin.github_app.view.fragments
 
 import android.os.Bundle
 import com.edwin.github_app.model.account.AccountManager
-import com.edwin.github_app.model.people.PeoplePage.Type.*
 import com.edwin.github_app.view.common.CommonViewPagerFragment
-
-import com.edwin.github_app.view.fragments.subfragments.PeopleListFragment
 import com.edwin.github_app.view.config.FragmentPage
+import com.edwin.github_app.view.fragments.subfragments.PeopleListFragment
 
 class PeopleFragment : CommonViewPagerFragment() {
     override fun getFragmentPagesNotLoggedIn(): List<FragmentPage> {

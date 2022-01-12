@@ -6,16 +6,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import cn.carbs.android.avatarimageview.library.AppCompatAvatarImageView
-import com.edwin.annotations.ActivityBuilder
 import com.edwin.annotations.Required
 import com.edwin.experimental.coroutines.awaitOrError
 import com.edwin.experimental.coroutines.launchUI
+import com.edwin.github_app.R
+import com.edwin.github_app.network.entities.Repository
 import com.edwin.github_app.network.services.ActivityService
 import com.edwin.github_app.network.services.RepositoryService
-
-import com.edwin.github_app.R
-import com.edwin.github_app.network.GraphQLService
-import com.edwin.github_app.network.entities.Repository
 import com.edwin.github_app.utils.*
 import com.edwin.github_app.view.common.BaseDetailSwipeFinishableActivity
 import com.edwin.github_app.view.widget.DetailItemView
@@ -23,7 +20,6 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import retrofit2.Response
 import rx.Subscriber
 
-@ActivityBuilder
 class RepoDetailActivity : BaseDetailSwipeFinishableActivity() {
 
     @Required
@@ -112,10 +108,10 @@ class RepoDetailActivity : BaseDetailSwipeFinishableActivity() {
                 stars.isChecked = it.isSuccessful
             }
 
-//        ActivityService.isWatched(repository.owner.login, repository.name)
-//                .subscribeIgnoreError {
-//                    watches.isChecked = it.subscribed
-//                }
+        ActivityService.isWatched(repository.owner.login, repository.name)
+                .subscribeIgnoreError {
+                    watches.isChecked = it.subscribed
+                }
 
 //        launchUI {
 //            try {

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="detail_title">GitHub</string>
+    <string name="detail_description">By LiangLliu</string>
+    <string name="open_source_licenses"><a>Open Source Licenses</a></string>
+    <string name="licenses_file_path"><a>licenses.md</a></string>
+</resources>

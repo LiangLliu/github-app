@@ -1,5 +1,6 @@
 package com.edwin.github_app
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.ContextWrapper
@@ -11,10 +12,20 @@ import com.edwin.swipefinishable.SwipeFinishable
 
 private lateinit var INSTANCE: Application
 
-class App: Application() {
+class BaseApp : Application() {
+
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        lateinit var context: Context
+    }
+
+
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
+
+        context = baseContext
+
         Tieguanyin.init(this);
         ActivityBuilder.INSTANCE.init(this)
         SwipeFinishable.INSTANCE.init(this)
@@ -27,4 +38,4 @@ class App: Application() {
     }
 }
 
-object AppContext: ContextWrapper(INSTANCE)
+object AppContext : ContextWrapper(INSTANCE)
